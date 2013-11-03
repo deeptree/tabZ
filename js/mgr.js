@@ -74,7 +74,7 @@ function initEachCatCont (catname) {
 function initAllData () {
     chrome.storage.local.get("catlist", function(details){
         var $classfiedlist = $("#classified");
-        var cssbox, fieldlist, text, title;
+        var cssbox;
         // alert ("123");
 
         m_catlist = details.catlist.catlist;
@@ -84,14 +84,8 @@ function initAllData () {
         for (var i = 1; i < details.catlist.catlist.length; i++) {
             if (i % 2) {
                 cssbox = "graybox";
-                // fieldlist = "classifiedlist_g";
-                // text = "gtext";
-                // title = "title";
             } else {
                 cssbox = "whitebox";
-            //     fieldlist = "classifiedlist_w";
-            //     text = "wtext";
-            //     title = "title_w";
             }
             $classfiedlist.append (
                 '<div class="' + cssbox + '"><div class="title"><h2>' +
@@ -118,21 +112,31 @@ function unlistContAmountCallback (dataLength) {
         var $unclassifiedobj = $("#unclasssort");
         // var dateTime = new Date();
         var items = JSON.parse (details.unlist).items;
+//        var curTime = (items.length > 0) ? items[0].time ? "";
         var curTime = "";
+        var htmlstr = "";
         //
         // TODO:
         //
         // alert ("1:" + items + ",2:" + items.items);
         for (var i = 0; i < items.length; i++) {
             if (curTime != items[i].time) {
-                $unclassifiedobj.append (
-                    '<ul><li class="time">' + 
+                curTime = items[i].time;
+                if ( i != 0) {
+                    htmlstr += '</ul>';
+                    // $unclassifiedobj.append ('</ul>');
+                }
+                htmlstr += '<ul><li class="time">' + 
                     // dateTime.toLocaleString() + 
                     items[i].time + 
-                    '<span class="operation"><span class="btn">Resotre all</span></span><span class="operation"><span class="btn">Delete all</span></span></li>');
+                    '<span class="operation"><span class="btn">Resotre all</span></span><span class="operation"><span class="btn">Delete all</span></span></li>';
+                // $unclassifiedobj.append (
+                //     '<ul><li class="time">' + 
+                //     // dateTime.toLocaleString() + 
+                //     items[i].time + 
+                //     '<span class="operation"><span class="btn">Resotre all</span></span><span class="operation"><span class="btn">Delete all</span></span></li>');
             }
-            $unclassifiedobj.append (
-                '<li><img src="' + 
+            htmlstr += '<li><img src="' + 
                 'images/logo.jpg' + 
                 '" width="16" height="16"><span class="list_item">' + 
                 '<a href="' +
@@ -140,12 +144,25 @@ function unlistContAmountCallback (dataLength) {
                 '">' +
                 items[i].title + 
                 '</a>' +
-                '</span></li>');
-            if (curTime != items[i].time) {
-                curTime = items[i].time;
-                $unclassifiedobj.append ('</ul>');
-            }
+                '</span></li>';
+
+            // $unclassifiedobj.append (
+            //     '<li><img src="' + 
+            //     'images/logo.jpg' + 
+            //     '" width="16" height="16"><span class="list_item">' + 
+            //     '<a href="' +
+            //     items[i].url + 
+            //     '">' +
+            //     items[i].title + 
+            //     '</a>' +
+            //     '</span></li>');
+            // if (curTime != items[i].time) {
+            //     curTime = items[i].time;
+            // }
         }
+        htmlstr += '</ul>';
+        $unclassifiedobj.append (htmlstr);
+        // $unclassifiedobj.append ('</ul>');
         // $unclassifiedobj.append (
         //     '<li><img src="images/logo.jpg" width="16" height="16"><span class="list_item">' + 
         //     ''
