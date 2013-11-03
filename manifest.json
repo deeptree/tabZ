@@ -1,0 +1,31 @@
+{
+  "name": "tabZ",
+  "version": "1.0.0",
+  "description": "make your url",
+  "icons": {
+    "48": "icon_48X48.png",
+    "128": "icon_128X128.png"
+  },
+  "permissions": [
+    "tabs",//權限，加上這個才能取tab.url
+    "storage"//存取權限
+  ],
+  "background": {
+    "persistent": false,
+    "scripts": ["/js/jquery-1.10.2.min.js","/js/background.js","/js/mgr.js"]
+  },
+  "browser_action": {
+    "default_icon": "icon_16X16.png",
+    "default_title": "Merge Windows",
+    "default_popup": "popup.html"
+  },
+//   "background_page": "main.html",
+//   "content_scripts": [
+//     {
+// //      "matches": ["http://*/*","https://*/*"],
+//       "matches": ["http://code.jquery.com/*", "http://code.jquery.com/ui/*", "http://code.jquery.com/ui/*/*"],
+//       "js": ["jquery-1.8.2.js", "ui/1.9.1/jquery-ui.js", "1.9.1/jquery-ui.js", "jquery-ui.js"]
+//     }
+//   ],
+  "manifest_version": 2
+}

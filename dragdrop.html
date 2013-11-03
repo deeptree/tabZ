@@ -1,0 +1,29 @@
+<!-- BEGIN: XHTML for example 1.3 -->
+    <div id="example-1-3">
+        <div class="column left first">
+            <ul class="sortable-list ui-sortable">
+                <li class="sortable-item" style="">Sortable item A</li>
+                <li class="sortable-item">Sortable item B</li>
+            </ul>
+        </div>
+        <div class="column left">
+            <ul class="sortable-list ui-sortable">
+                <li class="sortable-item">Sortable item C</li>
+                <li class="sortable-item">Sortable item D</li>
+            </ul>
+        </div>
+        <div class="column left">
+            <ul class="sortable-list ui-sortable">
+                <li class="sortable-item">Sortable item E</li>
+            </ul>
+        </div>
+        <div class="clearer">&nbsp;</div>
+    </div>
+<!-- END: XHTML for example 1.3 -->
+<script>
+    // Example 1.3: Sortable and connectable lists with visual helper
+    $('#example-1-3 .sortable-list').sortable({
+        connectWith: '#example-1-3 .sortable-list',
+        placeholder: 'placeholder',
+    });
+</script>
